@@ -1,0 +1,25 @@
+#
+# Minimizacion completa
+#
+ &cntrl
+  imin=1,maxcyc=10000,ncyc=5000,
+  drms=0.01,ntb=1,ntp=0,cut=9.0,
+  ntr=1, nmropt=1,
+/
+
+ &ewald
+    vdwmeth = 0,
+ /
+
+ &wt
+    type='END'
+ /
+DISANG=dihe.restraint
+LISTIN=POUT
+LISTOUT=POUT
+&end
+Protein posres
+50.0
+RES 1 294 295 302
+END
+END

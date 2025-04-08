@@ -1,0 +1,28 @@
+strength of the restraint was gradually reduced in two steps from 10 to 2 kcal mol−1Å−2.
+Each of the four steps was realized in 5000 cycles with a cutoff of 20 Å.
+
+Minimization with Cartesian restraints for the solute
+ &cntrl
+ imin=1, irest=0, ntx=1,
+ cut=9.0, ntb=1,
+ maxcyc=100000,ncyc=50000,
+ ntpr=500, ntwr=100, ntwx=1000,
+ ntr=1, nmropt=1,
+/
+
+ &ewald
+    vdwmeth = 0,
+ /
+
+ &wt
+    type='END'
+ /
+DISANG=dihe.restraint
+LISTIN=POUT
+LISTOUT=POUT
+&end
+Protein posres
+300.0
+RES 1 294 295 302
+END
+END
