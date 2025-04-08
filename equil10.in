@@ -1,0 +1,29 @@
+#
+# MD 1idrwat calentamiento 100 --> 200 (100 ps) NPT=Pressão Constante, prod=5ns
+#
+ &cntrl
+      imin=0,  ntx=5,  irest=1,
+      ntxo=1, ntpr=500, ntwr=500, ntwx=500, ntwe=500,
+      cut=8., ioutfm=1,
+      nstlim=2500000, dt=0.002,
+      ntf=2, ntc=2, tol=0.0005,
+      ntb=2, ntp=1,
+      ntt=3, gamma_ln=1.0,
+      nscm=100, nmropt=1,
+      temp0=300, tempi=275.,   ig=-1,
+ /
+
+ &ewald
+    vdwmeth = 0,
+ /
+
+ &wt
+    type='END'
+ /
+DISANG=dihe.restraint
+LISTIN=POUT
+LISTOUT=POUT
+&end
+RES 1 294 295 302
+END
+END
