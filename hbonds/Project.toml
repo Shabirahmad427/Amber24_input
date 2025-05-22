@@ -1,0 +1,6 @@
+[deps]
+MolSimToolkit = "054db54f-6694-444d-9bbb-e9ecdbfe77be"
+PDBTools = "e29189f1-7114-4dbd-93d0-c5673a921a58"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
