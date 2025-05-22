@@ -1,0 +1,1 @@
+:'<,'>s/\$exeCUDA/#$exeCUDA/g
