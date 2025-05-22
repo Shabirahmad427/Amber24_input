@@ -6,3 +6,4 @@ parmbox nobox
 strip (!:1-362)
 trajout 2us_nowat.mdcrd
 run
+#sietraj2 -pt complex.parm7 -trj ../2us_nowat.mdcrd -sf 1 -ef 11 -inc 4 -tr 1-5498 -lr 5499-5669 -o 1ocb.out -sie
