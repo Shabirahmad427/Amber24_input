@@ -1,0 +1,8 @@
+parm   complex.parm7
+trajin 2us_nowat.nc 1 last 80
+center :1-362 mass origin
+rms first @CA
+parmbox nobox
+strip (!:1-362)
+trajout 2us_nowat.mdcrd
+run
