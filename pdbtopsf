@@ -1,0 +1,6 @@
+python3
+import parmed as pmd
+
+structure = pmd.load_file('prot.pdb')
+
+structure.save('prot.psf')
