@@ -1,6 +1,6 @@
 python3
 import parmed as pmd
 
-structure = pmd.load_file('prot.pdb')
+structure = pmd.load_file('1.pdb')
 
-structure.save('prot.psf')
+structure.save('1.psf')
