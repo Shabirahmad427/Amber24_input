@@ -1,4 +1,4 @@
-cpptraj ../complex.parm7
+parm ../complex.parm7
 trajin ../60ns_nowat.nc
 multipucker glucose_analysis pyranose out puckers.dat resrange 365-372 cremer amplitude theta thetaout thetas.dat range360
 run
