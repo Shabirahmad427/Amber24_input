@@ -60,7 +60,7 @@ function protein_hbonding(
                 if hbond_2nd_criteria(hd, oa, rHO) && hbond_3rd_criteria(hd, od, oa, α)
                     hdonor_residue = join([PDBTools.resname(simulation.atoms[hydrogen]), PDBTools.resnum(simulation.atoms[hydrogen])], "")
                     labeld = join([hdonor_residue, PDBTools.name(simulation.atoms[hydrogen])], "-")
-                    haccep_residue = join([PDBTools.resname(simulation.atoms[j]), PDBTools.resnum(simulation.atoms[j])], "-")
+                    haccep_residue = join([PDBTools.resname(simulation.atoms[j]), PDBTools.resnum(simulation.atoms[j])], "")
                     labela = join([haccep_residue, PDBTools.name(simulation.atoms[j])], "-")
                     lock(hbonds_lock) do
                         if haskey(hbonds, (labeld, labela))
@@ -76,8 +76,10 @@ function protein_hbonding(
                 @fastmath for hydrogen in hydrogens
                     hd = MolSimToolkit.wrap(@view(XYZbuffer[hydrogen, :]), od, uc)
                     if hbond_2nd_criteria(hd, od, rHO) && hbond_3rd_criteria(hd, oa, od, α)
-                        labeld = join([PDBTools.resname(simulation.atoms[hydrogen]), PDBTools.name(simulation.atoms[hydrogen])], "-")
-                        labela = join([PDBTools.resname(simulation.atoms[i]), PDBTools.name(simulation.atoms[i])], "-")
+                        hdonor_residue = join([PDBTools.resname(simulation.atoms[hydrogen]), PDBTools.resnum(simulation.atoms[hydrogen])], "")
+                        labeld = join([hdonor_residue, PDBTools.name(simulation.atoms[hydrogen])], "-")
+                        haccep_residue = join([PDBTools.resname(simulation.atoms[i]), PDBTools.resnum(simulation.atoms[i])], "")
+                        labela = join([haccep_residue, PDBTools.name(simulation.atoms[i])], "-")
                         lock(hbonds_lock) do
                             if haskey(hbonds, (labeld, labela))
                                 hbonds[(labeld, labela)] += 1
@@ -96,7 +98,7 @@ function protein_hbonding(
         println(file, "Found $(length(hbonds)) hbonds.")
         println(file, "Donor       Acceptor   |  Occupancy")
         for (key, value) in hbonds
-            info = Printf.@sprintf("%10s %10s  |    %5.2f", key[1], key[2], 100 * value / nframes)
+            info = Printf.@sprintf("%15s %15s  |    %5.2f", key[1], key[2], 100 * value / nframes)
             println(info)
             println(file, info)
         end
