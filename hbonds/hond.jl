@@ -34,7 +34,7 @@ function protein_hbonding(
         # 1st H-bond criteria trial
         hbond_1st_criteria = MolSimToolkit.minimum_distances(
             xpositions = [ SVector(xyz[i]) for i in imonitored ],
-            ypositions = [ SVector(xyz[j]) for j in jreference ], 
+            ypositions = [ SVector(xyz[j]) for j in jreference ],
             xn_atoms_per_molecule = 1,
             cutoff = rOO,
             unitcell = uc
@@ -58,15 +58,17 @@ function protein_hbonding(
                 hydrogen = monitored_hydrogens[i]
                 hd = MolSimToolkit.wrap(@view(XYZbuffer[hydrogen,:]), oa, uc)
                 if hbond_2nd_criteria(hd, oa, rHO) && hbond_3rd_criteria(hd, od, oa, α)
-                    labeld = join([PDBTools.resname(simulation.atoms[hydrogen]), PDBTools.name(simulation.atoms[hydrogen])], "-")
-                    labela = join([PDBTools.resname(simulation.atoms[j]), PDBTools.name(simulation.atoms[j])], "-")
+                    hdonor_residue = join([PDBTools.resname(simulation.atoms[hydrogen]), PDBTools.resnum(simulation.atoms[hydrogen])], "")
+                    labeld = join([hdonor_residue, PDBTools.name(simulation.atoms[hydrogen])], "-")
+                    haccep_residue = join([PDBTools.resname(simulation.atoms[j]), PDBTools.resnum(simulation.atoms[j])], "-")
+                    labela = join([haccep_residue, PDBTools.name(simulation.atoms[j])], "-")
                     lock(hbonds_lock) do
                         if haskey(hbonds, (labeld, labela))
                             hbonds[(labeld, labela)] += 1
                         else
                             hbonds[(labeld, labela)] = 1
                         end
-                    end 
+                    end
                 end
             end
             if haskey(reference_hydrogens, j)   ## ligand as h-bond acceptor
@@ -170,7 +172,7 @@ end
 #         xyz, uc = MolSimToolkit.positions(frame), diag(MolSimToolkit.unitcell(frame))
 #         mindist = MolSimToolkit.minimum_distances(
 #             xpositions = [ SVector(xyz[i]) for i in imonitored ],
-#             ypositions = [ SVector(xyz[j]) for j in jreference ], 
+#             ypositions = [ SVector(xyz[j]) for j in jreference ],
 #             xn_atoms_per_molecule = 1,
 #             cutoff = rOO,
 #             unitcell = uc
